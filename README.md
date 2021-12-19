@@ -9,7 +9,7 @@ When you deploy an API proxy in front of your API, the proxy adopts API gateway 
 API Manager automatically generates the proxy application when you configure your API as an endpoint with a proxy and includes an autodiscovery feature in the application. Mule locks the API until all policies have been applied. The client application (consumer) calls the proxy, which then forwards the call to the API. After you deploy the application, the Mule instance calls API Manager using the client ID and secret to obtain the policies for the API.
 
 Runtime Fabric allows you to host API Proxies. However, after introduction of ingress v2 for Self-Managed Kubernetes the publicUrl for API proxy should match the Ingress rule for mule application which is currently not handled correctly by API Manager proxy API.
-The script shared tries to solve this problem by automating creation of API proxy and modifying PublicUrl for proxy API.
+The script shared tries to solve this problem by automating creation of API proxy and modifying PublicUrl for proxy API in an automated manner.
 
 # Problem Statement
 Current API proxy template in API Manager creates Public Endpoint for Ingress as below
