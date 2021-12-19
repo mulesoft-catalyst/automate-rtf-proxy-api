@@ -59,3 +59,7 @@ Note - The template file placeholders are updated by the the shell script
 $ sudo chmod 755 createMuleProxy.sh
 $ ./createMuleProxy.sh
 ```
+
+# Known Issue
+It is a known issue that the public endpoint in Runtime Manager UI is not updated after it is updated via platform API.
+![Alt text](/screenshots/Ingress-config-post.png?raw=true "Public Url in RTM")
