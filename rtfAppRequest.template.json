@@ -1,0 +1,11 @@
+{
+    "type": "RF",
+    "name": "{{RTFAppName}}",
+    "target": {
+        "targetId": "{{targetId}}",
+        "deploymentSettings": {
+            "runtimeVersion": "{{runtimeVersion}}"
+        }
+    },
+    "expectedStatus": "deployed"
+}

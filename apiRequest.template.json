@@ -1,0 +1,24 @@
+{
+    "endpoint": {
+        "deploymentType": "RF",
+        "isCloudHub": false,
+        "muleVersion4OrAbove": true,
+        "proxyUri": "http://0.0.0.0:8081/",
+        "proxyTemplate": {
+            "assetVersion": "{{proxyTemplateVersion}}"
+        },
+        "referencesUserDomain": false,
+        "responseTimeout": null,
+        "type": "rest",
+        "uri": "{{apiUri}}",
+        "validation": "ENABLED",
+        "console": {}
+    },
+    "providerId": null,
+    "instanceLabel": "rtf-proxy-api",
+    "spec": {
+        "assetId": "{{assetId}}",
+        "groupId": "{{groupId}}",
+        "version": "{{version}}"
+    }
+}

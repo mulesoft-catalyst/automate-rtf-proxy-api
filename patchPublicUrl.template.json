@@ -1,0 +1,19 @@
+{
+    "target": {
+        "deploymentSettings": {
+            "http": {
+                "inbound": {
+                    "publicUrl": "{{publicUrl}}"
+                }
+            }
+        }
+    },
+    "application": {
+        "ref": {
+            "groupId": "{{groupId}}",
+            "artifactId": "{{artifactId}}",
+            "version": "{{version}}",
+            "packaging": "jar"
+        }
+    }
+}
