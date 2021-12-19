@@ -52,3 +52,10 @@ This is a template file which allows you to create mule proxy APP in RTF cluster
 This is a template file which allows you to update public endpoint for mule proxy APP in RTF cluster 
 
 Note - The template file placeholders are updated by the the shell script 
+
+# Run the script
+
+```
+$ sudo chmod 755 createMuleProxy.sh
+$ ./createMuleProxy.sh
+```
