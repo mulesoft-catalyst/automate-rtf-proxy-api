@@ -28,17 +28,17 @@ The script requires a few supporting files to be created and updated with detail
 ### envProperties.properties
 Update below values in the file - 
 
-clientId = ClientId of Connected APP
-clientSecret = ClientSecret of Connected APP
-orgId = Organization ID
-targetEnvId = Environment ID where proxy APP will be deployed
-targetRTFClusterName = RTF Cluster Name 
-targetEnvName = Environment name where proxy APP will be deployed
-targetHostName = Host name for Mule proxy APP 
-apiUri = Implementation Url for Mule proxy APP
-publicUrl = Public Endpoint for Mule proxy APP
-apiName = Asset ID for Mule proxy API spec in exchange
-rtfAppName = Application name for RTF Mule proxy APP
+- clientId = ClientId of Connected APP
+- clientSecret = ClientSecret of Connected APP
+- orgId = Organization ID
+- targetEnvId = Environment ID where proxy APP will be deployed
+- targetRTFClusterName = RTF Cluster Name 
+- targetEnvName = Environment name where proxy APP will be deployed
+- targetHostName = Host name for Mule proxy APP 
+- apiUri = Implementation Url for Mule proxy APP
+- publicUrl = Public Endpoint for Mule proxy APP
+- apiName = Asset ID for Mule proxy API spec in exchange
+- rtfAppName = Application name for RTF Mule proxy APP
 
 Note - Make sure Connected APP has all necessary permissions to create API in API Manager and proxy APP in RTF cluster.
 
