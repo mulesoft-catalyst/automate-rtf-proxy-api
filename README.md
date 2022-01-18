@@ -22,8 +22,9 @@ Expected Public Endpoint by RTF Cluster Ingress
 ![Alt text](/screenshots/Ingress-config-expected.png?raw=true "Public Url from API Manager template")
 
 # Prerequisites 
+1. Install jq from https://stedolan.github.io/jq/download/ 
 
-The script requires a few supporting files to be created and updated with details so it can automate deployment.
+2. The script requires a few supporting files to be created and updated with details so it can automate deployment.
 
 ### envProperties.properties
 Update below values in the file - 
