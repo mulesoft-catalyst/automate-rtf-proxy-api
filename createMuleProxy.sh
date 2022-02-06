@@ -9,10 +9,14 @@ orgId=$(cat $PROPERTY_FILE | grep -w "orgId" | cut -d'=' -f2)
 targetEnvId=$(cat $PROPERTY_FILE | grep -w "targetEnvId" | cut -d'=' -f2)
 targetRTFClusterName=$(cat $PROPERTY_FILE | grep -w "targetRTFClusterName" | cut -d'=' -f2)
 targetEnvName=$(cat $PROPERTY_FILE | grep -w "targetEnvName" | cut -d'=' -f2)
+targetHostName=$(cat $PROPERTY_FILE | grep -w "targetHostName" | cut -d'=' -f2)
 apiUri=$(cat $PROPERTY_FILE | grep -w "apiUri" | cut -d'=' -f2)
 publicUrl=$(cat $PROPERTY_FILE | grep -w "publicUrl" | cut -d'=' -f2)
 apiName=$(cat $PROPERTY_FILE | grep -w "apiName" | cut -d'=' -f2)
 rtfAppName=$(cat $PROPERTY_FILE | grep -w "rtfAppName" | cut -d'=' -f2)
+cpuReserved=$(cat $PROPERTY_FILE | grep -w "cpuReserved" | cut -d'=' -f2)
+cpuMax=$(cat $PROPERTY_FILE | grep -w "cpuMax" | cut -d'=' -f2)
+memory=$(cat $PROPERTY_FILE | grep -w "memory" | cut -d'=' -f2)
 
 echo "Successfully mapped value to keys from properties file"
 
@@ -217,8 +221,12 @@ $(jq --arg publicUrl "${publicUrl}" \
     --arg groupId "${groupId}" \
     --arg artifactId "${artifactId}" \
     --arg version "${version}" \
+	--arg cpuReserved "${cpuReserved}" \
+	--arg cpuMax "${cpuMax}" \
+	--arg memory "${memory}" \
     '.target.deploymentSettings.http.inbound.publicUrl = $publicUrl | .application.ref.groupId = $groupId | .application.ref.artifactId = $artifactId | 
-	 .application.ref.version = $version' patchPublicUrl.template.json > patchPublicUrl_${apiName}.json )
+	 .application.ref.version = $version | .target.deploymentSettings.cpuReserved = $cpuReserved | .target.deploymentSettings.cpuMax = $cpuMax 
+	 | .target.deploymentSettings.memoryReserved = $memory | .target.deploymentSettings.memoryMax = $memory' patchPublicUrl.template.json > patchPublicUrl_${apiName}.json )
 
 echo "Successfuly created patch RTF APP request file"
 
