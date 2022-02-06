@@ -8,18 +8,12 @@ When you deploy an API proxy in front of your API, the proxy adopts API gateway 
 
 API Manager automatically generates the proxy application when you configure your API as an endpoint with a proxy and includes an autodiscovery feature in the application. Mule locks the API until all policies have been applied. The client application (consumer) calls the proxy, which then forwards the call to the API. After you deploy the application, the Mule instance calls API Manager using the client ID and secret to obtain the policies for the API.
 
-Runtime Fabric allows you to host API Proxies. However, after introduction of ingress v2 for Self-Managed Kubernetes the publicUrl for API proxy should match the Ingress rule for mule application which is currently not handled correctly by API Manager proxy API.
-The script shared tries to solve this problem by automating creation of API proxy and modifying PublicUrl for proxy API in an automated manner.
+Runtime Fabric allows you to host API Proxies. However, after introduction of ingress v2 for Self-Managed Kubernetes you can have multiple ingress inside a single RTF cluster. The proxy created using API Manager does not allow you to choose the public URL for the proxy api. The API manager template also allocates pre-fixed value for CPU and Memory for proxy api which may be high or low based on your requirement for the proxy api.
+The script shared tries to solve this problem by automating creation of API proxy, modifying PublicUrl for proxy API and allocating resource to porxy api in an automated manner.
 
 # Problem Statement
-Current API proxy template in API Manager creates Public Endpoint for Ingress as below
-
-![Alt text](/screenshots/Ingress-config-ootb.png?raw=true "Public Url from API Manager template")
-
-Expected Public Endpoint by RTF Cluster Ingress
-
-
-![Alt text](/screenshots/Ingress-config-expected.png?raw=true "Public Url from API Manager template")
+- Current API proxy template in API Manager does not allow user to choose Public Endpoint for Ingress
+- API manager template allocates pre-fixed value for CPU and Memory for proxy api
 
 # Prerequisites 
 1. Install jq from https://stedolan.github.io/jq/download/ 
@@ -38,8 +32,12 @@ Update below values in the file -
 - targetHostName = Host name for Mule proxy APP 
 - apiUri = Implementation Url for Mule proxy APP
 - publicUrl = Public Endpoint for Mule proxy APP
-- apiName = Asset ID for Mule proxy API spec in exchange
+- apiName = Asset ID for Mule proxy API spec in exchange or Asset ID for HTTP asset to be created in Exchange for HTTP Proxies
+- apiVersion = Asset version of HTTP asset to be created in Exchange for HTTP Proxies
 - rtfAppName = Application name for RTF Mule proxy APP
+- cpuReserved = The amount of vCPU guaranteed to the application and reserved for its use.
+- cpuMax = The maximum amount of vCPU the application can use (the level to which it can burst)
+- memory = Memory to be allocated to Mule proxy app
 
 Note - Make sure Connected APP has all necessary permissions to create API in API Manager and proxy APP in RTF cluster.
 
@@ -56,11 +54,16 @@ Note - The template file placeholders are updated by the the shell script
 
 # Run the script
 
+To create HTTP Mule Proxy APP
+```
+$ sudo chmod 755 createHTTPMuleProxy.sh
+$ ./createHTTPMuleProxy.sh
+```
+
+To create Mule Proxy APP from Exchange
 ```
 $ sudo chmod 755 createMuleProxy.sh
 $ ./createMuleProxy.sh
 ```
 
-# Known Issue
-It is a known issue that the public endpoint in Runtime Manager UI is not updated after it is updated via platform API.
-![Alt text](/screenshots/Ingress-config-post.png?raw=true "Public Url in RTM")
+
